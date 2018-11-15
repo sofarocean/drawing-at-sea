@@ -37,7 +37,10 @@ export default function generatePathSegments(points, key = "segment") {
 
 function generatePath(points) {
   return points.reduce(
-    (out, p, i) => `${out} ${i === 0 ? "M" : "L"} ${p.x} ${p.y} `,
+    (out, p, i) =>
+      p.x !== null && p.y !== null
+        ? `${out} ${i === 0 ? "M" : "L"} ${p.x} ${p.y} `
+        : out,
     ""
   );
 }
