@@ -48,19 +48,23 @@ export default class DrawingApp extends React.Component {
       // We will build an array of exactly one or two points to add to our overall line data
       const newPoints = [];
 
-      const lastPoint = this.state.points[this.state.points.length - 1];
-
       // If this point is the start of a new segment, create an "end segment" point
-      // at the position of the previous point
+      // with null coordinates.
+      //
+      // This simply acts as a separator between segments so we can keep all
+      // points in one flat array.
       if (this.state.justStarted && this.state.points.length > 0) {
-        newPoints.push(Object.assign({}, lastPoint, { isEndOfSegment: true }));
+        newPoints.push({
+          x: null,
+          y: null,
+          isEndOfSegment: true,
+        });
       }
 
       // Append a new point to the array
       const newPoint = {
         x: ev.nativeEvent.offsetX,
         y: ev.nativeEvent.offsetY,
-        isStartOfSegment: this.state.justStarted,
         isEndOfSegment: false,
       };
 
