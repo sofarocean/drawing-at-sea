@@ -57,7 +57,9 @@ export default class DrawingApp extends React.Component {
         newPoints.push({
           x: null,
           y: null,
-          isEndOfSegment: true,
+          metadata: {
+            isEndOfSegment: true,
+          }
         });
       }
 
@@ -65,7 +67,9 @@ export default class DrawingApp extends React.Component {
       const newPoint = {
         x: ev.nativeEvent.offsetX,
         y: ev.nativeEvent.offsetY,
-        isEndOfSegment: false,
+        metadata: {
+          isEndOfSegment: false,
+        }
       };
 
       newPoints.push(newPoint);

@@ -9,7 +9,7 @@ export default function generatePathSegments(points, key = "segment") {
   let currentSegment = [];
   points.forEach(p => {
     currentSegment.push(p);
-    if (p.isEndOfSegment) {
+    if (p.metadata.isEndOfSegment) {
       segments.push(
         <path
           key={key + segments.length}
